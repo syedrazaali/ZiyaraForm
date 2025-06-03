@@ -5,62 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bay Area Ziyarah Trip 2025/2026 Registration</title>
   <style>
-    /* ─────────────── Basic Reset & Layout ─────────────── */
-    * {
+    /* ───────────────────────────────────────────────────────────────────
+       1) BASIC RESET & TYPOGRAPHY
+    ─────────────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    }
+    html {
       font-family: Arial, sans-serif;
+      font-size: 100%;       /* =16px by default; use rem for scaling */
+      line-height: 1.5;
     }
     body {
-      background: #f5f5f5;
+      margin: 0;
+      padding: 1.25rem;      /* 1.25rem ≈ 20px */
+      background-color: #f5f5f5;
       color: #333;
-      line-height: 1.5;
-      padding: 20px;
     }
+    h1, h2, h3, h4, h5, h6, p, label {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 1.75rem;    /* ≈28px */
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 1.25rem;    /* ≈20px */
+      margin: 1.5rem 0 0.5rem; /* Top margin, small bottom margin */
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid #ddd;
+      color: #222;
+    }
+    p {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;    /* ≈15px */
+    }
+
+    /* ───────────────────────────────────────────────────────────────────
+       2) CONTAINER & LAYOUT
+    ─────────────────────────────────────────────────────────────────── */
     .container {
-      max-width: 700px;
+      width: 90vw;           /* fluid width up to: */
+      max-width: 700px;      /* no wider than 700px */
       margin: 0 auto;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 0.375rem; /* ≈6px */
+      box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1); /* 2px 8px */
       overflow: hidden;
     }
     header {
-      background: #222;
+      background-color: #222;
       color: #fff;
-      padding: 20px 30px;
       text-align: center;
-    }
-    header h1 {
-      font-size: 1.8rem;
+      padding: 1.25rem 1rem; /* vertically 20px, horizontally 16px */
     }
     header p {
-      margin-top: 6px;
+      margin-top: 0.5rem;
       font-size: 0.95rem;
       opacity: 0.85;
     }
     main {
-      padding: 30px;
-    }
-    h2 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.6rem;
-      font-size: 1.2rem;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 4px;
-      color: #222;
+      padding: 1.875rem 1rem; /* top/bottom 30px, left/right 16px */
     }
 
-    /* ─────────────── Trip Summary Box ─────────────── */
+    /* ───────────────────────────────────────────────────────────────────
+       3) TRIP SUMMARY BOX
+    ─────────────────────────────────────────────────────────────────── */
     .summary-box {
-      background: #fafafa;
-      border-left: 4px solid #d9534f;
-      padding: 20px 20px 20px 26px;
-      margin-bottom: 30px;
+      background-color: #fafafa;
+      border-left: 0.25rem solid #d9534f; /* 4px */
+      padding: 1.25rem 1rem 1.25rem 1.625rem; /* top/right/bottom, left 26px */
+      margin-bottom: 2rem; /* 32px */
     }
     .summary-box p {
-      margin-bottom: 10px;
+      margin-bottom: 0.625rem; /* 10px */
       font-size: 0.95rem;
     }
     .summary-box .highlight {
@@ -68,89 +87,108 @@
       color: #d9534f;
     }
 
-    /* ─────────────── Form Styles ─────────────── */
+    /* ───────────────────────────────────────────────────────────────────
+       4) FORM STYLING
+    ─────────────────────────────────────────────────────────────────── */
     form {
       width: 100%;
     }
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 1.125rem; /* 18px */
     }
     .form-group label {
       display: block;
       font-weight: bold;
-      margin-bottom: 6px;
+      margin-bottom: 0.375rem; /* 6px */
       font-size: 0.95rem;
     }
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 0.5rem 0.75rem; /* 8px 12px */
       font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem; /* 4px */
+      background-color: #fff;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #d9534f;
+      box-shadow: 0 0 0 0.125rem rgba(217,83,79,0.25);
     }
     .form-group textarea {
+      min-height: 5rem; /* 80px */
       resize: vertical;
-      min-height: 80px;
     }
+
+    /* ───────────────────────────────────────────────────────────────────
+       5) FLEX‐BOX FOR TWO‐COLUMN ROWS
+    ─────────────────────────────────────────────────────────────────── */
     .half-row {
       display: flex;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 1rem; /* 16px */
     }
     .half-row .form-group {
-      flex: 1;
+      flex: 1 1 200px; /* grows, shrinks, base 200px */
     }
-    .form-group-small {
-      width: 80px;
-    }
+
+    /* ───────────────────────────────────────────────────────────────────
+       6) CHECKBOX GROUP
+    ─────────────────────────────────────────────────────────────────── */
     .checkbox-group {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 0.5rem; /* 8px */
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 0.25rem; /* align with label */
+      transform: scale(1.1);
+    }
+    .checkbox-group label {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.3;
     }
 
-    /* ─────────────── Submit Button ─────────────── */
+    /* ───────────────────────────────────────────────────────────────────
+       7) SUBMIT BUTTON
+    ─────────────────────────────────────────────────────────────────── */
     .submit-btn {
       display: inline-block;
-      padding: 12px 24px;
-      background: #d9534f;
+      padding: 0.75rem 1.5rem; /* 12px 24px */
+      background-color: #d9534f;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1rem;       /* 16px */
       font-weight: bold;
       border: none;
-      border-radius: 4px;
+      border-radius: 0.25rem; /* 4px */
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 1rem;      /* 16px */
+      text-align: center;
     }
     .submit-btn:hover {
-      background: #c9302c;
+      background-color: #c9302c;
     }
 
-    /* ─────────────── Responsive ─────────────── */
-    @media (max-width: 600px) {
-      .half-row {
-        flex-direction: column;
-      }
-    }
-
-    /* ─────────────── Disclaimer & Contacts ─────────────── */
+    /* ───────────────────────────────────────────────────────────────────
+       8) DISCLAIMER & CONTACTS
+    ─────────────────────────────────────────────────────────────────── */
     .disclaimer {
-      font-size: 0.85rem;
-      margin-top: 30px;
+      font-size: 0.85rem;     /* ≈14px */
+      margin-top: 2rem;       /* 32px */
       color: #555;
     }
     .contacts {
-      margin-top: 20px;
-      font-size: 0.9rem;
+      margin-top: 1.25rem;    /* 20px */
+      font-size: 0.9rem;      /* ≈14.5px */
       line-height: 1.4;
     }
-    .contacts strong {
-      display: block;
-      margin-bottom: 4px;
-    }
     .contacts p {
-      margin-bottom: 8px;
+      margin-bottom: 0.75rem; /* 12px */
     }
     .contacts a {
       color: #d9534f;
@@ -159,47 +197,76 @@
     .contacts a:hover {
       text-decoration: underline;
     }
+
+    /* ───────────────────────────────────────────────────────────────────
+       9) RESPONSIVE TWEAKS
+       - On extra-small screens, reduce header font a bit and form paddings
+    ─────────────────────────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;    /* ≈24px */
+      }
+      header {
+        padding: 1rem 0.5rem;  /* 16px 8px */
+      }
+      main {
+        padding: 1.25rem 0.75rem; /* 20px 12px */
+      }
+      .summary-box {
+        padding: 1rem 0.75rem 1rem 1.25rem; /* adjust for small screens */
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem 0;   /* full-width button */
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- ─────────────── Header ─────────────── -->
+    <!-- ─────────────── HEADER ─────────────── -->
     <header>
       <h1>Bay Area Ziyarah Trip 2025/2026</h1>
       <p>December 24 – January 11 — SFO via Turkish Airlines</p>
     </header>
 
     <main>
-      <!-- ─────────────── Trip Summary ─────────────── -->
+      <!-- ─────────────── TRIP SUMMARY ─────────────── -->
       <section class="summary-box">
         <p>
-          <span class="highlight">$3,950 total cost</span> (includes visa, meals, airfare, & hotel)
+          <span class="highlight">$3,950 total cost</span> (includes visa, meals, airfare, &amp; hotel)
         </p>
         <p>
-          <span class="highlight">$500 non-refundable deposit</span> required at registration. 
+          <span class="highlight">$500 non-refundable deposit</span> required at registration.
           <strong>Deadline: August 31, 2025.</strong>
         </p>
         <p>
-          <strong>Destinations:</strong> Shrines & Harams across Iraq & Iran.
+          <strong>Destinations:</strong> Shrines &amp; Harams across Iraq &amp; Iran.
         </p>
         <p>
-          <strong>Scholars:</strong> Under the guidance of experienced scholars the entire journey.
+          <strong>Scholars:</strong> Under the guidance of experienced scholars.
         </p>
         <p>
-          <strong>Transportation:</strong> Departure from SFO, ground transport provided across all sites.
+          <strong>Transportation:</strong> Departure from SFO; ground transport provided across all sites.
         </p>
         <p>
-          <strong>Meals:</strong> Breakfast, lunch, & dinner included daily.
+          <strong>Meals:</strong> Breakfast, lunch, &amp; dinner included daily.
         </p>
       </section>
 
-      <!-- ─────────────── Registration Form ─────────────── -->
+      <!-- ─────────────── REGISTRATION FORM ─────────────── -->
       <form action="#" method="POST">
-        <!-- Personal Information -->
+        <!-- 1. PERSONAL INFORMATION -->
         <h2>1. Personal Information</h2>
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" required placeholder="First Middle Last" />
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="First Middle Last"
+          />
         </div>
 
         <div class="half-row">
@@ -210,7 +277,7 @@
           <div class="form-group">
             <label for="gender">Gender</label>
             <select id="gender" name="gender" required>
-              <option value="" disabled selected>Select …</option>
+              <option value="" disabled selected>Select…</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other / Prefer not to say</option>
@@ -221,7 +288,13 @@
         <div class="half-row">
           <div class="form-group">
             <label for="address">Street Address</label>
-            <input type="text" id="address" name="address" required placeholder="123 Main St, Apt 4B" />
+            <input
+              type="text"
+              id="address"
+              name="address"
+              required
+              placeholder="123 Main St, Apt 4B"
+            />
           </div>
           <div class="form-group">
             <label for="city">City</label>
@@ -236,103 +309,156 @@
           </div>
           <div class="form-group">
             <label for="zip">Zip / Postal Code</label>
-            <input type="text" id="zip" name="zip" required maxlength="10" />
+            <input
+              type="text"
+              id="zip"
+              name="zip"
+              required
+              maxlength="10"
+              placeholder="e.g., 94568"
+            />
           </div>
         </div>
 
         <div class="half-row">
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890" />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="(123) 456-7890"
+            />
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+            />
           </div>
         </div>
 
-        <!-- Passport & Travel Documents -->
-        <h2>2. Passport & Travel Documents</h2>
+        <!-- 2. PASSPORT & TRAVEL DOCUMENTS -->
+        <h2>2. Passport &amp; Travel Documents</h2>
         <div class="half-row">
           <div class="form-group">
             <label for="passportNumber">Passport Number</label>
-            <input type="text" id="passportNumber" name="passportNumber" required />
+            <input
+              type="text"
+              id="passportNumber"
+              name="passportNumber"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="passportExpiry">Passport Expiration Date</label>
-            <input type="date" id="passportExpiry" name="passportExpiry" required />
+            <input
+              type="date"
+              id="passportExpiry"
+              name="passportExpiry"
+              required
+            />
           </div>
         </div>
         <div class="form-group">
           <label for="nationality">Nationality</label>
-          <input type="text" id="nationality" name="nationality" required placeholder="e.g., Pakistani, American" />
+          <input
+            type="text"
+            id="nationality"
+            name="nationality"
+            required
+            placeholder="e.g., Pakistani, American"
+          />
         </div>
 
-        <!-- Emergency Contact -->
+        <!-- 3. EMERGENCY CONTACT -->
         <h2>3. Emergency Contact</h2>
         <div class="form-group">
           <label for="emergencyName">Full Name</label>
-          <input type="text" id="emergencyName" name="emergencyName" required placeholder="Name of emergency contact" />
+          <input
+            type="text"
+            id="emergencyName"
+            name="emergencyName"
+            required
+            placeholder="Name of emergency contact"
+          />
         </div>
         <div class="half-row">
           <div class="form-group">
             <label for="emergencyRelationship">Relationship</label>
-            <input type="text" id="emergencyRelationship" name="emergencyRelationship" required placeholder="e.g., Father, Sister" />
+            <input
+              type="text"
+              id="emergencyRelationship"
+              name="emergencyRelationship"
+              required
+              placeholder="e.g., Father, Sister"
+            />
           </div>
           <div class="form-group">
             <label for="emergencyPhone">Phone Number</label>
-            <input type="tel" id="emergencyPhone" name="emergencyPhone" required placeholder="(123) 456-7890" />
+            <input
+              type="tel"
+              id="emergencyPhone"
+              name="emergencyPhone"
+              required
+              placeholder="(123) 456-7890"
+            />
           </div>
         </div>
         <div class="form-group">
           <label for="emergencyAddress">Address</label>
-          <input type="text" id="emergencyAddress" name="emergencyAddress" required placeholder="Street, City, State, Zip" />
+          <input
+            type="text"
+            id="emergencyAddress"
+            name="emergencyAddress"
+            required
+            placeholder="Street, City, State, Zip"
+          />
         </div>
 
-        <!-- Health / Special Requests -->
-        <h2>4. Health & Special Needs</h2>
+        <!-- 4. HEALTH & SPECIAL NEEDS -->
+        <h2>4. Health &amp; Special Needs</h2>
         <div class="form-group">
-          <label>Do you have any medical conditions or allergies?</label>
-          <textarea id="medicalConditions" name="medicalConditions" placeholder="If none, write ‘N/A’"></textarea>
+          <label for="medicalConditions">
+            Do you have any medical conditions or allergies?
+          </label>
+          <textarea
+            id="medicalConditions"
+            name="medicalConditions"
+            placeholder="If none, write ‘N/A’"
+          ></textarea>
         </div>
         <div class="form-group">
-          <label>Dietary Restrictions (if any)</label>
-          <input type="text" id="dietaryRestrictions" name="dietaryRestrictions" placeholder="Halal only, vegetarian, etc." />
+          <label for="dietaryRestrictions">Dietary Restrictions (if any)</label>
+          <input
+            type="text"
+            id="dietaryRestrictions"
+            name="dietaryRestrictions"
+            placeholder="Halal only, vegetarian, etc."
+          />
         </div>
         <div class="form-group">
-          <label>Roommate Preferences</label>
-          <input type="text" id="roommatePref" name="roommatePref" placeholder="Name or ‘No preference’" />
-        </div>
-
-        <!-- Trip Details & Options -->
-        <h2>5. Trip Details & Options</h2>
-        <div class="form-group">
-          <label for="departureAirport">Preferred Departure Airport</label>
-          <select id="departureAirport" name="departureAirport" required>
-            <option value="" disabled selected>Select …</option>
-            <option value="SFO">SFO</option>
-            <option value="OAK">OAK</option>
-            <option value="SJC">SJC</option>
-            <option value="Other">Other (specify below)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="otherAirport">If Other, please specify</label>
-          <input type="text" id="otherAirport" name="otherAirport" placeholder="e.g., LAX, SEA" />
-        </div>
-        <div class="form-group">
-          <label for="travelInsurance">Will you purchase travel insurance?</label>
-          <select id="travelInsurance" name="travelInsurance" required>
-            <option value="" disabled selected>Select …</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
+          <label for="roommatePref">Roommate Preferences</label>
+          <input
+            type="text"
+            id="roommatePref"
+            name="roommatePref"
+            placeholder="Name or ‘No preference’"
+          />
         </div>
 
-        <!-- Payment Information (Placeholder) -->
-        <h2>6. Payment Details</h2>
-        <p style="font-size:0.9rem; margin-bottom: 12px;">
-          A non-refundable deposit of <strong>$500</strong> is due at registration. Final balance of $<span style="text-decoration: line-through;">3450</span> – assuming $3,950 total – will be collected by October 15, 2025. (We will send you an invoice for final payment.)
+        <!-- 6. PAYMENT DETAILS -->
+        <h2>5. Payment Details</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">
+          A non-refundable deposit of <strong>$500</strong> is due at registration.
+          Final balance of <span style="text-decoration: line-through;">$3,450</span>  
+          (assuming $3,950 total) will be collected by October 15, 2025.  
+          (An invoice for final payment will be sent later.)
         </p>
         <div class="form-group">
           <label for="paymentMethod">Deposit Payment Method</label>
@@ -346,8 +472,15 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="paymentDetails">If ‘Other’, or additional info (e.g., last 4 of card, transaction ID)</label>
-          <input type="text" id="paymentDetails" name="paymentDetails" placeholder="e.g., Zelle TXN#, Check #…" />
+          <label for="paymentDetails">
+            If “Other,” or additional info (e.g., last 4 digits of card, transaction ID)
+          </label>
+          <input
+            type="text"
+            id="paymentDetails"
+            name="paymentDetails"
+            placeholder="e.g., Zelle TXN #123456"
+          />
         </div>
         <div class="form-group">
           <label for="depositAmount">Deposit Amount ($)</label>
@@ -364,25 +497,31 @@
           />
         </div>
 
-        <!-- Terms & Signature -->
-        <h2>7. Terms & Signature</h2>
+        <!-- 7. TERMS & SIGNATURE -->
+        <h2>6. Terms &amp; Signature</h2>
         <div class="checkbox-group form-group">
           <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
           <label for="agreeTerms">
-            I understand that upon submitting this form with my $500 deposit, I am committing to the
+            I understand that upon submitting this form with my $500 deposit, I am committing to the 
             <strong>Bay Area Ziyarah Trip 2025/2026</strong>. I agree to pay the remaining balance by October 15, 2025.
           </label>
         </div>
         <div class="form-group">
           <label for="signature">Type Your Full Name Here as e-Signature</label>
-          <input type="text" id="signature" name="signature" required placeholder="e.g., John Smith" />
+          <input
+            type="text"
+            id="signature"
+            name="signature"
+            required
+            placeholder="e.g., John Smith"
+          />
         </div>
 
-        <!-- Submit Button -->
+        <!-- SUBMIT BUTTON -->
         <button type="submit" class="submit-btn">Submit Registration</button>
       </form>
 
-      <!-- ─────────────── Contact / Disclaimer ─────────────── -->
+      <!-- ─────────────── DISCLAIMER & CONTACTS ─────────────── -->
       <div class="disclaimer">
         <p>
           <strong>Disclaimer:</strong> Please note that SABA, ICZ, Imam Hussain Masjed, and Fatimiyya are only providing religious guidance for this trip. For administrative or logistical questions, contact the individuals below:
@@ -391,19 +530,19 @@
 
       <div class="contacts">
         <p>
-          <strong>SABA Islamic Center: Hasan Mirza</strong>
-          Phone: (408) 499-2476  |  Email: <a href="mailto:sabaziyarah@gmail.com">sabaziyarah@gmail.com</a>
+          <strong>SABA Islamic Center – Hasan Mirza</strong><br />
+          Phone: (408) 499-2476 | Email: <a href="mailto:sabaziyarah@gmail.com">sabaziyarah@gmail.com</a>
         </p>
         <p>
-          <strong>ICZ (Hasnain Zaidi):</strong>
-          Phone: (209) 221-6801  |  Email: <a href="mailto:iczziyarah@iczsqa.org">iczziyarah@iczsqa.org</a>
+          <strong>ICZ (Hasnain Zaidi)</strong><br />
+          Phone: (209) 221-6801 | Email: <a href="mailto:iczziyarah@iczsqa.org">iczziyarah@iczsqa.org</a>
         </p>
         <p>
-          <strong>Fatimiyya (MoWahedi):</strong>
-          Phone: (510) 520-6075  |  Email: <a href="mailto:fatimiyaaziya­rah@gmail.com">fatimiyaaziya­rah@gmail.com</a>
+          <strong>Fatimiyya (MoWahedi)</strong><br />
+          Phone: (510) 520-6075 | Email: <a href="mailto:fatimiyaaziya-rah@gmail.com">fatimiyaaziya-rah@gmail.com</a>
         </p>
         <p>
-          <strong>Dar Batul (Syed Masood):</strong>
+          <strong>Dar Batul (Syed Masood)</strong><br />
           Phone: (510) 371-2436
         </p>
       </div>
