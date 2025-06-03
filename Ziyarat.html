@@ -137,15 +137,18 @@
     }
 
     /* ───────────────────────────────────────────────────────────────────
-       6) CHECKBOX GROUP
+       6) CHECKBOX GROUP (TERMS & SIGNATURE)
+       We will override flex-direction via JavaScript based on screen width.
     ─────────────────────────────────────────────────────────────────── */
     .checkbox-group {
       display: flex;
       align-items: flex-start;
       gap: 0.5rem; /* 8px */
+      /* Default is row; JS will switch to column on narrow screens */
+      flex-direction: row;
     }
     .checkbox-group input[type="checkbox"] {
-      margin-top: 0.25rem; /* align with label */
+      margin-top: 0.25rem; /* align with label in row mode */
       transform: scale(1.1);
     }
     .checkbox-group label {
@@ -199,8 +202,7 @@
     }
 
     /* ───────────────────────────────────────────────────────────────────
-       9) RESPONSIVE TWEAKS
-       - On extra-small screens, reduce header font a bit and form paddings
+       9) RESPONSIVE TWEAKS (for other elements)
     ─────────────────────────────────────────────────────────────────── */
     @media (max-width: 480px) {
       header h1 {
@@ -255,7 +257,7 @@
       </section>
 
       <!-- ─────────────── REGISTRATION FORM ─────────────── -->
-      <form action="#" method="POST">
+      <form action="#" method="POST" enctype="multipart/form-data">
         <!-- 1. PERSONAL INFORMATION -->
         <h2>1. Personal Information</h2>
         <div class="form-group">
@@ -376,6 +378,20 @@
           />
         </div>
 
+        <!-- Passport Photo (optional) -->
+        <div class="form-group">
+          <label for="passportPhoto">Passport Photo (JPEG/PNG)</label>
+          <input
+            type="file"
+            id="passportPhoto"
+            name="passportPhoto"
+            accept="image/jpeg, image/png"
+          />
+          <small style="font-size: 0.85rem; color: #666;">
+            Upload a clear scan/photo of your passport’s photo page.
+          </small>
+        </div>
+
         <!-- 3. EMERGENCY CONTACT -->
         <h2>3. Emergency Contact</h2>
         <div class="form-group">
@@ -452,7 +468,7 @@
           />
         </div>
 
-        <!-- 6. PAYMENT DETAILS -->
+        <!-- 5. PAYMENT DETAILS -->
         <h2>5. Payment Details</h2>
         <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">
           A non-refundable deposit of <strong>$500</strong> is due at registration.
@@ -497,13 +513,19 @@
           />
         </div>
 
-        <!-- 7. TERMS & SIGNATURE -->
+        <!-- 6. TERMS & SIGNATURE -->
         <h2>6. Terms &amp; Signature</h2>
-        <div class="checkbox-group form-group">
-          <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
-          <label for="agreeTerms">
-            I understand that upon submitting this form with my $500 deposit, I am committing to the 
-            <strong>Bay Area Ziyarah Trip 2025/2026</strong>. I agree to pay the remaining balance by October 15, 2025.
+        <div class="checkbox-group form-group" id="termsContainer">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            name="agreeTerms"
+            required
+          />
+          <label for="agreeTerms" id="termsLabel">
+            I understand that upon submitting this form with my $500 deposit, I am committing to the
+            <strong>Bay Area Ziyarah Trip 2025/2026</strong>. I agree to pay the remaining balance
+            by October 15, 2025.
           </label>
         </div>
         <div class="form-group">
@@ -548,5 +570,30 @@
       </div>
     </main>
   </div>
+
+  <!-- ───────────────────────────────────────────────────────────────────
+     10) JAVASCRIPT: ADJUST TERMS & SIGNATURE LAYOUT
+     We check window.innerWidth. If under 480px, stack the checkbox ABOVE the label.
+     Otherwise keep them side-by-side.
+  ─────────────────────────────────────────────────────────────────── -->
+  <script>
+    function adjustTermsLayout() {
+      const termsContainer = document.getElementById('termsContainer');
+      if (!termsContainer) return;
+
+      // If viewport is narrower than 480px → stack (column), else row
+      if (window.innerWidth < 480) {
+        termsContainer.style.flexDirection = 'column';
+        termsContainer.querySelector('label').style.marginLeft = '0';
+      } else {
+        termsContainer.style.flexDirection = 'row';
+        termsContainer.querySelector('label').style.marginLeft = '0.5rem';
+      }
+    }
+
+    // Run on load, and again whenever the user resizes
+    window.addEventListener('DOMContentLoaded', adjustTermsLayout);
+    window.addEventListener('resize', adjustTermsLayout);
+  </script>
 </body>
 </html>
