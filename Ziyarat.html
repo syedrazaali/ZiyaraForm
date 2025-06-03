@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bay Area Ziyarah Trip 2025/2026 Registration</title>
+  <style>
+    /* ─────────────── Basic Reset & Layout ─────────────── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 20px 30px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    header p {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+    main {
+      padding: 30px;
+    }
+    h2 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 4px;
+      color: #222;
+    }
+
+    /* ─────────────── Trip Summary Box ─────────────── */
+    .summary-box {
+      background: #fafafa;
+      border-left: 4px solid #d9534f;
+      padding: 20px 20px 20px 26px;
+      margin-bottom: 30px;
+    }
+    .summary-box p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    .summary-box .highlight {
+      font-weight: bold;
+      color: #d9534f;
+    }
+
+    /* ─────────────── Form Styles ─────────────── */
+    form {
+      width: 100%;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .half-row {
+      display: flex;
+      gap: 16px;
+    }
+    .half-row .form-group {
+      flex: 1;
+    }
+    .form-group-small {
+      width: 80px;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ─────────────── Submit Button ─────────────── */
+    .submit-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #d9534f;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .submit-btn:hover {
+      background: #c9302c;
+    }
+
+    /* ─────────────── Responsive ─────────────── */
+    @media (max-width: 600px) {
+      .half-row {
+        flex-direction: column;
+      }
+    }
+
+    /* ─────────────── Disclaimer & Contacts ─────────────── */
+    .disclaimer {
+      font-size: 0.85rem;
+      margin-top: 30px;
+      color: #555;
+    }
+    .contacts {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .contacts strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .contacts p {
+      margin-bottom: 8px;
+    }
+    .contacts a {
+      color: #d9534f;
+      text-decoration: none;
+    }
+    .contacts a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ─────────────── Header ─────────────── -->
+    <header>
+      <h1>Bay Area Ziyarah Trip 2025/2026</h1>
+      <p>December 24 – January 11 — SFO via Turkish Airlines</p>
+    </header>
+
+    <main>
+      <!-- ─────────────── Trip Summary ─────────────── -->
+      <section class="summary-box">
+        <p>
+          <span class="highlight">$3,950 total cost</span> (includes visa, meals, airfare, & hotel)
+        </p>
+        <p>
+          <span class="highlight">$500 non-refundable deposit</span> required at registration. 
+          <strong>Deadline: August 31, 2025.</strong>
+        </p>
+        <p>
+          <strong>Destinations:</strong> Shrines & Harams across Iraq & Iran.
+        </p>
+        <p>
+          <strong>Scholars:</strong> Under the guidance of experienced scholars the entire journey.
+        </p>
+        <p>
+          <strong>Transportation:</strong> Departure from SFO, ground transport provided across all sites.
+        </p>
+        <p>
+          <strong>Meals:</strong> Breakfast, lunch, & dinner included daily.
+        </p>
+      </section>
+
+      <!-- ─────────────── Registration Form ─────────────── -->
+      <form action="#" method="POST">
+        <!-- Personal Information -->
+        <h2>1. Personal Information</h2>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="First Middle Last" />
+        </div>
+
+        <div class="half-row">
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select …</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other / Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="half-row">
+          <div class="form-group">
+            <label for="address">Street Address</label>
+            <input type="text" id="address" name="address" required placeholder="123 Main St, Apt 4B" />
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+        </div>
+
+        <div class="half-row">
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+          <div class="form-group">
+            <label for="zip">Zip / Postal Code</label>
+            <input type="text" id="zip" name="zip" required maxlength="10" />
+          </div>
+        </div>
+
+        <div class="half-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <!-- Passport & Travel Documents -->
+        <h2>2. Passport & Travel Documents</h2>
+        <div class="half-row">
+          <div class="form-group">
+            <label for="passportNumber">Passport Number</label>
+            <input type="text" id="passportNumber" name="passportNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="passportExpiry">Passport Expiration Date</label>
+            <input type="date" id="passportExpiry" name="passportExpiry" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nationality">Nationality</label>
+          <input type="text" id="nationality" name="nationality" required placeholder="e.g., Pakistani, American" />
+        </div>
+
+        <!-- Emergency Contact -->
+        <h2>3. Emergency Contact</h2>
+        <div class="form-group">
+          <label for="emergencyName">Full Name</label>
+          <input type="text" id="emergencyName" name="emergencyName" required placeholder="Name of emergency contact" />
+        </div>
+        <div class="half-row">
+          <div class="form-group">
+            <label for="emergencyRelationship">Relationship</label>
+            <input type="text" id="emergencyRelationship" name="emergencyRelationship" required placeholder="e.g., Father, Sister" />
+          </div>
+          <div class="form-group">
+            <label for="emergencyPhone">Phone Number</label>
+            <input type="tel" id="emergencyPhone" name="emergencyPhone" required placeholder="(123) 456-7890" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emergencyAddress">Address</label>
+          <input type="text" id="emergencyAddress" name="emergencyAddress" required placeholder="Street, City, State, Zip" />
+        </div>
+
+        <!-- Health / Special Requests -->
+        <h2>4. Health & Special Needs</h2>
+        <div class="form-group">
+          <label>Do you have any medical conditions or allergies?</label>
+          <textarea id="medicalConditions" name="medicalConditions" placeholder="If none, write ‘N/A’"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Dietary Restrictions (if any)</label>
+          <input type="text" id="dietaryRestrictions" name="dietaryRestrictions" placeholder="Halal only, vegetarian, etc." />
+        </div>
+        <div class="form-group">
+          <label>Roommate Preferences</label>
+          <input type="text" id="roommatePref" name="roommatePref" placeholder="Name or ‘No preference’" />
+        </div>
+
+        <!-- Trip Details & Options -->
+        <h2>5. Trip Details & Options</h2>
+        <div class="form-group">
+          <label for="departureAirport">Preferred Departure Airport</label>
+          <select id="departureAirport" name="departureAirport" required>
+            <option value="" disabled selected>Select …</option>
+            <option value="SFO">SFO</option>
+            <option value="OAK">OAK</option>
+            <option value="SJC">SJC</option>
+            <option value="Other">Other (specify below)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="otherAirport">If Other, please specify</label>
+          <input type="text" id="otherAirport" name="otherAirport" placeholder="e.g., LAX, SEA" />
+        </div>
+        <div class="form-group">
+          <label for="travelInsurance">Will you purchase travel insurance?</label>
+          <select id="travelInsurance" name="travelInsurance" required>
+            <option value="" disabled selected>Select …</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <!-- Payment Information (Placeholder) -->
+        <h2>6. Payment Details</h2>
+        <p style="font-size:0.9rem; margin-bottom: 12px;">
+          A non-refundable deposit of <strong>$500</strong> is due at registration. Final balance of $<span style="text-decoration: line-through;">3450</span> – assuming $3,950 total – will be collected by October 15, 2025. (We will send you an invoice for final payment.)
+        </p>
+        <div class="form-group">
+          <label for="paymentMethod">Deposit Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="ACH / Bank Transfer">ACH / Bank Transfer</option>
+            <option value="Check">Check</option>
+            <option value="Zelle">Zelle</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="paymentDetails">If ‘Other’, or additional info (e.g., last 4 of card, transaction ID)</label>
+          <input type="text" id="paymentDetails" name="paymentDetails" placeholder="e.g., Zelle TXN#, Check #…" />
+        </div>
+        <div class="form-group">
+          <label for="depositAmount">Deposit Amount ($)</label>
+          <input
+            type="number"
+            id="depositAmount"
+            name="depositAmount"
+            required
+            min="500"
+            max="3950"
+            step="0.01"
+            value="500"
+            placeholder="500.00"
+          />
+        </div>
+
+        <!-- Terms & Signature -->
+        <h2>7. Terms & Signature</h2>
+        <div class="checkbox-group form-group">
+          <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
+          <label for="agreeTerms">
+            I understand that upon submitting this form with my $500 deposit, I am committing to the
+            <strong>Bay Area Ziyarah Trip 2025/2026</strong>. I agree to pay the remaining balance by October 15, 2025.
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="signature">Type Your Full Name Here as e-Signature</label>
+          <input type="text" id="signature" name="signature" required placeholder="e.g., John Smith" />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit Registration</button>
+      </form>
+
+      <!-- ─────────────── Contact / Disclaimer ─────────────── -->
+      <div class="disclaimer">
+        <p>
+          <strong>Disclaimer:</strong> Please note that SABA, ICZ, Imam Hussain Masjed, and Fatimiyya are only providing religious guidance for this trip. For administrative or logistical questions, contact the individuals below:
+        </p>
+      </div>
+
+      <div class="contacts">
+        <p>
+          <strong>SABA Islamic Center: Hasan Mirza</strong>
+          Phone: (408) 499-2476  |  Email: <a href="mailto:sabaziyarah@gmail.com">sabaziyarah@gmail.com</a>
+        </p>
+        <p>
+          <strong>ICZ (Hasnain Zaidi):</strong>
+          Phone: (209) 221-6801  |  Email: <a href="mailto:iczziyarah@iczsqa.org">iczziyarah@iczsqa.org</a>
+        </p>
+        <p>
+          <strong>Fatimiyya (MoWahedi):</strong>
+          Phone: (510) 520-6075  |  Email: <a href="mailto:fatimiyaaziya­rah@gmail.com">fatimiyaaziya­rah@gmail.com</a>
+        </p>
+        <p>
+          <strong>Dar Batul (Syed Masood):</strong>
+          Phone: (510) 371-2436
+        </p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
