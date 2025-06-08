@@ -4,596 +4,307 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bay Area Ziyarah Trip 2025/2026 Registration</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <!-- Flatpickr CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    rel="stylesheet"
+  >
+
   <style>
-    /* ───────────────────────────────────────────────────────────────────
-       1) BASIC RESET & TYPOGRAPHY
-    ─────────────────────────────────────────────────────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    html {
-      font-family: Arial, sans-serif;
-      font-size: 100%;       /* =16px by default; use rem for scaling */
-      line-height: 1.5;
-    }
     body {
-      margin: 0;
-      padding: 1.25rem;      /* 1.25rem ≈ 20px */
       background-color: #f5f5f5;
-      color: #333;
     }
-    h1, h2, h3, h4, h5, h6, p, label {
-      margin: 0;
-      padding: 0;
+    .summary-card {
+      border-left: 4px solid #d9534f;
     }
-    h1 {
-      font-size: 1.75rem;    /* ≈28px */
-      line-height: 1.2;
-    }
-    h2 {
-      font-size: 1.25rem;    /* ≈20px */
-      margin: 1.5rem 0 0.5rem; /* Top margin, small bottom margin */
-      padding-bottom: 0.25rem;
-      border-bottom: 2px solid #ddd;
-      color: #222;
-    }
-    p {
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;    /* ≈15px */
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       2) CONTAINER & LAYOUT
-    ─────────────────────────────────────────────────────────────────── */
-    .container {
-      width: 90vw;           /* fluid width up to: */
-      max-width: 700px;      /* no wider than 700px */
-      margin: 0 auto;
-      background-color: #fff;
-      border-radius: 0.375rem; /* ≈6px */
-      box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1); /* 2px 8px */
-      overflow: hidden;
-    }
-    header {
-      background-color: #222;
-      color: #fff;
-      text-align: center;
-      padding: 1.25rem 1rem; /* vertically 20px, horizontally 16px */
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
-    main {
-      padding: 1.875rem 1rem; /* top/bottom 30px, left/right 16px */
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       3) TRIP SUMMARY BOX
-    ─────────────────────────────────────────────────────────────────── */
-    .summary-box {
-      background-color: #fafafa;
-      border-left: 0.25rem solid #d9534f; /* 4px */
-      padding: 1.25rem 1rem 1.25rem 1.625rem; /* top/right/bottom, left 26px */
-      margin-bottom: 2rem; /* 32px */
-    }
-    .summary-box p {
-      margin-bottom: 0.625rem; /* 10px */
-      font-size: 0.95rem;
-    }
-    .summary-box .highlight {
-      font-weight: bold;
-      color: #d9534f;
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       4) FORM STYLING
-    ─────────────────────────────────────────────────────────────────── */
-    form {
-      width: 100%;
-    }
-    .form-group {
-      margin-bottom: 1.125rem; /* 18px */
-    }
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.375rem; /* 6px */
-      font-size: 0.95rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.5rem 0.75rem; /* 8px 12px */
-      font-size: 0.95rem;
-      border: 1px solid #ccc;
-      border-radius: 0.25rem; /* 4px */
-      background-color: #fff;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #d9534f;
-      box-shadow: 0 0 0 0.125rem rgba(217,83,79,0.25);
-    }
-    .form-group textarea {
-      min-height: 5rem; /* 80px */
-      resize: vertical;
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       5) FLEX‐BOX FOR TWO‐COLUMN ROWS
-    ─────────────────────────────────────────────────────────────────── */
-    .half-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem; /* 16px */
-    }
-    .half-row .form-group {
-      flex: 1 1 200px; /* grows, shrinks, base 200px */
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       6) CHECKBOX GROUP (TERMS & SIGNATURE)
-       We will override flex-direction via JavaScript based on screen width.
-    ─────────────────────────────────────────────────────────────────── */
-    .checkbox-group {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem; /* 8px */
-      /* Default is row; JS will switch to column on narrow screens */
-      flex-direction: row;
-    }
-    .checkbox-group input[type="checkbox"] {
-      margin-top: 0.25rem; /* align with label in row mode */
-      transform: scale(1.1);
-    }
-    .checkbox-group label {
-      margin-bottom: 0;
-      font-size: 0.95rem;
-      line-height: 1.3;
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       7) SUBMIT BUTTON
-    ─────────────────────────────────────────────────────────────────── */
-    .submit-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem; /* 12px 24px */
-      background-color: #d9534f;
-      color: #fff;
-      font-size: 1rem;       /* 16px */
-      font-weight: bold;
-      border: none;
-      border-radius: 0.25rem; /* 4px */
-      cursor: pointer;
-      margin-top: 1rem;      /* 16px */
-      text-align: center;
-    }
-    .submit-btn:hover {
-      background-color: #c9302c;
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       8) DISCLAIMER & CONTACTS
-    ─────────────────────────────────────────────────────────────────── */
-    .disclaimer {
-      font-size: 0.85rem;     /* ≈14px */
-      margin-top: 2rem;       /* 32px */
-      color: #555;
-    }
-    .contacts {
-      margin-top: 1.25rem;    /* 20px */
-      font-size: 0.9rem;      /* ≈14.5px */
-      line-height: 1.4;
-    }
-    .contacts p {
-      margin-bottom: 0.75rem; /* 12px */
-    }
-    .contacts a {
-      color: #d9534f;
-      text-decoration: none;
-    }
-    .contacts a:hover {
-      text-decoration: underline;
-    }
-
-    /* ───────────────────────────────────────────────────────────────────
-       9) RESPONSIVE TWEAKS (for other elements)
-    ─────────────────────────────────────────────────────────────────── */
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.5rem;    /* ≈24px */
-      }
-      header {
-        padding: 1rem 0.5rem;  /* 16px 8px */
-      }
-      main {
-        padding: 1.25rem 0.75rem; /* 20px 12px */
-      }
-      .summary-box {
-        padding: 1rem 0.75rem 1rem 1.25rem; /* adjust for small screens */
-      }
-      .submit-btn {
-        width: 100%;
-        padding: 0.75rem 0;   /* full-width button */
-      }
+    .flatpickr-input {
+      background-color: #fff !important;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- ─────────────── HEADER ─────────────── -->
-    <header>
+  <div class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
       <h1>Bay Area Ziyarah Trip 2025/2026</h1>
-      <p>December 24 – January 11 — SFO via Turkish Airlines</p>
-    </header>
+      <p class="text-muted">December 24 – January 11 — SFO via Turkish Airlines</p>
+    </div>
 
-    <main>
-      <!-- ─────────────── TRIP SUMMARY ─────────────── -->
-      <section class="summary-box">
-        <p>
-          <span class="highlight">$3,950 total cost</span> (includes visa, meals, airfare, &amp; hotel)
-        </p>
-        <p>
-          <span class="highlight">$500 non-refundable deposit</span> required at registration.
-          <strong>Deadline: August 31, 2025.</strong>
-        </p>
-        <p>
-          <strong>Destinations:</strong> Shrines &amp; Harams across Iraq &amp; Iran.
-        </p>
-        <p>
-          <strong>Scholars:</strong> Under the guidance of experienced scholars.
-        </p>
-        <p>
-          <strong>Transportation:</strong> Departure from SFO; ground transport provided across all sites.
-        </p>
-        <p>
-          <strong>Meals:</strong> Breakfast, lunch, &amp; dinner included daily.
-        </p>
-      </section>
+    <!-- Trip Summary -->
+    <div class="card summary-card mb-4 shadow-sm">
+      <div class="card-body">
+        <p><strong class="text-danger">$3,950 total cost</strong> (includes visa, meals, airfare, hotel)</p>
+        <p><strong class="text-danger">$500 deposit</strong> due on registration. <u>Deadline: August 31, 2025.</u></p>
+        <ul class="list-unstyled mb-0">
+          <li><strong>Destinations:</strong> Shrines & Harams across Iraq & Iran</li>
+          <li><strong>Scholars:</strong> Under guidance of experienced scholars</li>
+          <li><strong>Transport:</strong> Ground & air travel from SFO</li>
+          <li><strong>Meals:</strong> Breakfast, lunch & dinner daily</li>
+        </ul>
+      </div>
+    </div>
 
-      <!-- ─────────────── REGISTRATION FORM ─────────────── -->
-      <form action="#" method="POST" enctype="multipart/form-data">
-        <!-- 1. PERSONAL INFORMATION -->
-        <h2>1. Personal Information</h2>
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            required
-            placeholder="First Middle Last"
-          />
-        </div>
+    <!-- Registration Form -->
+    <form id="ziyarahForm" class="needs-validation" novalidate
+          action="https://script.google.com/macros/s/AKfycbx…XYZ/exec"
+          method="POST"
+          enctype="multipart/form-data">
 
-        <div class="half-row">
-          <div class="form-group">
-            <label for="dateOfBirth">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" required />
-          </div>
-          <div class="form-group">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
-              <option value="" disabled selected>Select…</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other / Prefer not to say</option>
-            </select>
-          </div>
+      <!-- 1. Personal Information -->
+      <h2 class="h5 mb-3">1. Personal Information</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" required>
+          <div class="invalid-feedback">Full name is required.</div>
         </div>
-
-        <div class="half-row">
-          <div class="form-group">
-            <label for="address">Street Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              required
-              placeholder="123 Main St, Apt 4B"
-            />
-          </div>
-          <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" required />
-          </div>
+        <div class="col-md-3">
+          <label for="dateOfBirth" class="form-label">Date of Birth</label>
+          <input type="text" class="form-control flatpickr" id="dateOfBirth" name="dateOfBirth" required placeholder="YYYY-MM-DD">
+          <div class="invalid-feedback">Please choose your date of birth.</div>
         </div>
-
-        <div class="half-row">
-          <div class="form-group">
-            <label for="state">State</label>
-            <input type="text" id="state" name="state" required />
-          </div>
-          <div class="form-group">
-            <label for="zip">Zip / Postal Code</label>
-            <input
-              type="text"
-              id="zip"
-              name="zip"
-              required
-              maxlength="10"
-              placeholder="e.g., 94568"
-            />
-          </div>
-        </div>
-
-        <div class="half-row">
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              placeholder="(123) 456-7890"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="you@example.com"
-            />
-          </div>
-        </div>
-
-        <!-- 2. PASSPORT & TRAVEL DOCUMENTS -->
-        <h2>2. Passport &amp; Travel Documents</h2>
-        <div class="half-row">
-          <div class="form-group">
-            <label for="passportNumber">Passport Number</label>
-            <input
-              type="text"
-              id="passportNumber"
-              name="passportNumber"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="passportExpiry">Passport Expiration Date</label>
-            <input
-              type="date"
-              id="passportExpiry"
-              name="passportExpiry"
-              required
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="nationality">Nationality</label>
-          <input
-            type="text"
-            id="nationality"
-            name="nationality"
-            required
-            placeholder="e.g., Pakistani, American"
-          />
-        </div>
-
-        <!-- Passport Photo (optional) -->
-        <div class="form-group">
-          <label for="passportPhoto">Passport Photo (JPEG/PNG)</label>
-          <input
-            type="file"
-            id="passportPhoto"
-            name="passportPhoto"
-            accept="image/jpeg, image/png"
-          />
-          <small style="font-size: 0.85rem; color: #666;">
-            Upload a clear scan/photo of your passport’s photo page.
-          </small>
-        </div>
-
-        <!-- 3. EMERGENCY CONTACT -->
-        <h2>3. Emergency Contact</h2>
-        <div class="form-group">
-          <label for="emergencyName">Full Name</label>
-          <input
-            type="text"
-            id="emergencyName"
-            name="emergencyName"
-            required
-            placeholder="Name of emergency contact"
-          />
-        </div>
-        <div class="half-row">
-          <div class="form-group">
-            <label for="emergencyRelationship">Relationship</label>
-            <input
-              type="text"
-              id="emergencyRelationship"
-              name="emergencyRelationship"
-              required
-              placeholder="e.g., Father, Sister"
-            />
-          </div>
-          <div class="form-group">
-            <label for="emergencyPhone">Phone Number</label>
-            <input
-              type="tel"
-              id="emergencyPhone"
-              name="emergencyPhone"
-              required
-              placeholder="(123) 456-7890"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="emergencyAddress">Address</label>
-          <input
-            type="text"
-            id="emergencyAddress"
-            name="emergencyAddress"
-            required
-            placeholder="Street, City, State, Zip"
-          />
-        </div>
-
-        <!-- 4. HEALTH & SPECIAL NEEDS -->
-        <h2>4. Health &amp; Special Needs</h2>
-        <div class="form-group">
-          <label for="medicalConditions">
-            Do you have any medical conditions or allergies?
-          </label>
-          <textarea
-            id="medicalConditions"
-            name="medicalConditions"
-            placeholder="If none, write ‘N/A’"
-          ></textarea>
-        </div>
-        <div class="form-group">
-          <label for="dietaryRestrictions">Dietary Restrictions (if any)</label>
-          <input
-            type="text"
-            id="dietaryRestrictions"
-            name="dietaryRestrictions"
-            placeholder="Halal only, vegetarian, etc."
-          />
-        </div>
-        <div class="form-group">
-          <label for="roommatePref">Roommate Preferences</label>
-          <input
-            type="text"
-            id="roommatePref"
-            name="roommatePref"
-            placeholder="Name or ‘No preference’"
-          />
-        </div>
-
-        <!-- 5. PAYMENT DETAILS -->
-        <h2>5. Payment Details</h2>
-        <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">
-          A non-refundable deposit of <strong>$500</strong> is due at registration.
-          Final balance of <span style="text-decoration: line-through;">$3,450</span>  
-          (assuming $3,950 total) will be collected by October 15, 2025.  
-          (An invoice for final payment will be sent later.)
-        </p>
-        <div class="form-group">
-          <label for="paymentMethod">Deposit Payment Method</label>
-          <select id="paymentMethod" name="paymentMethod" required>
-            <option value="" disabled selected>Select…</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="ACH / Bank Transfer">ACH / Bank Transfer</option>
-            <option value="Check">Check</option>
-            <option value="Zelle">Zelle</option>
-            <option value="Other">Other</option>
+        <div class="col-md-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" id="gender" name="gender" required>
+            <option value="" disabled selected>Choose…</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other / Prefer not to say</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="paymentDetails">
-            If “Other,” or additional info (e.g., last 4 digits of card, transaction ID)
-          </label>
-          <input
-            type="text"
-            id="paymentDetails"
-            name="paymentDetails"
-            placeholder="e.g., Zelle TXN #123456"
-          />
-        </div>
-        <div class="form-group">
-          <label for="depositAmount">Deposit Amount ($)</label>
-          <input
-            type="number"
-            id="depositAmount"
-            name="depositAmount"
-            required
-            min="500"
-            max="3950"
-            step="0.01"
-            value="500"
-            placeholder="500.00"
-          />
+          <div class="invalid-feedback">Please select a gender.</div>
         </div>
 
-        <!-- 6. TERMS & SIGNATURE -->
-        <h2>6. Terms &amp; Signature</h2>
-        <div class="checkbox-group form-group" id="termsContainer">
-          <input
-            type="checkbox"
-            id="agreeTerms"
-            name="agreeTerms"
-            required
-          />
-          <label for="agreeTerms" id="termsLabel">
-            I understand that upon submitting this form with my $500 deposit, I am committing to the
-            <strong>Bay Area Ziyarah Trip 2025/2026</strong>. I agree to pay the remaining balance
-            by October 15, 2025.
-          </label>
+        <div class="col-md-9">
+          <label for="address" class="form-label">Street Address</label>
+          <input type="text" class="form-control" id="address" name="address" required>
+          <div class="invalid-feedback">Street address is required.</div>
         </div>
-        <div class="form-group">
-          <label for="signature">Type Your Full Name Here as e-Signature</label>
-          <input
-            type="text"
-            id="signature"
-            name="signature"
-            required
-            placeholder="e.g., John Smith"
-          />
+        <div class="col-md-3">
+          <label for="zip" class="form-label">Zip / Postal Code</label>
+          <input type="text" class="form-control" id="zip" name="zip" required>
+          <div class="invalid-feedback">ZIP code is required.</div>
         </div>
 
-        <!-- SUBMIT BUTTON -->
-        <button type="submit" class="submit-btn">Submit Registration</button>
-      </form>
+        <div class="col-md-6">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" name="city" required>
+          <div class="invalid-feedback">City is required.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="state" class="form-label">State</label>
+          <input type="text" class="form-control" id="state" name="state" required>
+          <div class="invalid-feedback">State is required.</div>
+        </div>
 
-      <!-- ─────────────── DISCLAIMER & CONTACTS ─────────────── -->
-      <div class="disclaimer">
-        <p>
-          <strong>Disclaimer:</strong> Please note that SABA, ICZ, Imam Hussain Masjed, and Fatimiyya are only providing religious guidance for this trip. For administrative or logistical questions, contact the individuals below:
-        </p>
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="(123) 456-7890" required>
+          <div class="invalid-feedback">Phone number is required.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+          <div class="invalid-feedback">Valid email is required.</div>
+        </div>
       </div>
 
-      <div class="contacts">
-        <p>
-          <strong>SABA Islamic Center – Hasan Mirza</strong><br />
-          Phone: (408) 499-2476 | Email: <a href="mailto:sabaziyarah@gmail.com">sabaziyarah@gmail.com</a>
-        </p>
-        <p>
-          <strong>ICZ (Hasnain Zaidi)</strong><br />
-          Phone: (209) 221-6801 | Email: <a href="mailto:iczziyarah@iczsqa.org">iczziyarah@iczsqa.org</a>
-        </p>
-        <p>
-          <strong>Fatimiyya (MoWahedi)</strong><br />
-          Phone: (510) 520-6075 | Email: <a href="mailto:fatimiyaaziya-rah@gmail.com">fatimiyaaziya-rah@gmail.com</a>
-        </p>
-        <p>
-          <strong>Dar Batul (Syed Masood)</strong><br />
-          Phone: (510) 371-2436
-        </p>
+      <!-- 2. Passport & Photo Upload -->
+      <h2 class="h5 mt-5 mb-3">2. Passport & Photo</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="passportNumber" class="form-label">Passport Number</label>
+          <input type="text" class="form-control" id="passportNumber" name="passportNumber" required>
+          <div class="invalid-feedback">Passport number is required.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="passportExpiry" class="form-label">Passport Expiry</label>
+          <input type="text" class="form-control flatpickr" id="passportExpiry" name="passportExpiry" required placeholder="YYYY-MM-DD">
+          <div class="invalid-feedback">Expiry date is required.</div>
+        </div>
+
+        <div class="col-12">
+          <label for="passportPhoto" class="form-label">Passport Photo (JPEG/PNG, ≤5 MB)</label>
+          <input class="form-control" type="file" id="passportPhoto" name="passportPhoto"
+                 accept="image/jpeg,image/png" required>
+          <div class="invalid-feedback">Please upload your passport photo.</div>
+          <img id="passportPreview" class="img-fluid mt-2 d-none" style="max-height:200px;" alt="Preview">
+        </div>
       </div>
-    </main>
+
+      <!-- 3. Emergency Contact -->
+      <h2 class="h5 mt-5 mb-3">3. Emergency Contact</h2>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="emergencyName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="emergencyName" name="emergencyName" required>
+          <div class="invalid-feedback">Name is required.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="emergencyRelationship" class="form-label">Relationship</label>
+          <input type="text" class="form-control" id="emergencyRelationship" name="emergencyRelationship" required>
+          <div class="invalid-feedback">Relationship is required.</div>
+        </div>
+        <div class="col-md-4">
+          <label for="emergencyPhone" class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="emergencyPhone" name="emergencyPhone" required>
+          <div class="invalid-feedback">Phone is required.</div>
+        </div>
+      </div>
+      <div class="row g-3 mt-1">
+        <div class="col-12">
+          <label for="emergencyAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="emergencyAddress" name="emergencyAddress" required>
+          <div class="invalid-feedback">Address is required.</div>
+        </div>
+      </div>
+
+      <!-- 4. Health & Needs -->
+      <h2 class="h5 mt-5 mb-3">4. Health & Needs</h2>
+      <div class="mb-3">
+        <label for="medicalConditions" class="form-label">Medical Conditions / Allergies</label>
+        <textarea class="form-control" id="medicalConditions" name="medicalConditions"
+                  placeholder="If none, write ‘N/A’"></textarea>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="dietaryRestrictions" class="form-label">Dietary Restrictions</label>
+          <input type="text" class="form-control" id="dietaryRestrictions" name="dietaryRestrictions">
+        </div>
+        <div class="col-md-6">
+          <label for="roommatePref" class="form-label">Roommate Preference</label>
+          <input type="text" class="form-control" id="roommatePref" name="roommatePref">
+        </div>
+      </div>
+
+      <!-- 5. Trip Options -->
+      <h2 class="h5 mt-5 mb-3">5. Trip Details & Options</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="departureAirport" class="form-label">Departure Airport</label>
+          <select class="form-select" id="departureAirport" name="departureAirport" required>
+            <option value="" disabled selected>Choose…</option>
+            <option>SFO</option>
+            <option>OAK</option>
+            <option>SJC</option>
+            <option>Other</option>
+          </select>
+          <div class="invalid-feedback">Please pick an airport.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="otherAirport" class="form-label">If Other, specify</label>
+          <input type="text" class="form-control" id="otherAirport" name="otherAirport" placeholder="e.g. LAX">
+        </div>
+        <div class="col-md-6">
+          <label for="travelInsurance" class="form-label">Travel Insurance?</label>
+          <select class="form-select" id="travelInsurance" name="travelInsurance" required>
+            <option value="" disabled selected>Choose…</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+          <div class="invalid-feedback">Please select an option.</div>
+        </div>
+      </div>
+
+      <!-- 6. Payment Details -->
+      <h2 class="h5 mt-5 mb-3">6. Payment Details</h2>
+      <p class="small text-muted">
+        Deposit: <strong>$500</strong>. Balance: <del>$3,450</del> by October 15, 2025.
+      </p>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="paymentMethod" class="form-label">Payment Method</label>
+          <select class="form-select" id="paymentMethod" name="paymentMethod" required>
+            <option value="" disabled selected>Choose…</option>
+            <option>Credit Card</option>
+            <option>ACH / Bank Transfer</option>
+            <option>Check</option>
+            <option>Zelle</option>
+            <option>Other</option>
+          </select>
+          <div class="invalid-feedback">Method required.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="depositAmount" class="form-label">Deposit Amount ($)</label>
+          <input type="number" class="form-control" id="depositAmount" name="depositAmount"
+                 min="500" max="3950" step="0.01" value="500" required>
+          <div class="invalid-feedback">Deposit must be ≥ 500.</div>
+        </div>
+        <div class="col-12">
+          <label for="paymentDetails" class="form-label">Additional Info</label>
+          <input type="text" class="form-control" id="paymentDetails" name="paymentDetails"
+                 placeholder="e.g. Zelle TXN #123456">
+        </div>
+      </div>
+
+      <!-- 7. Terms & Signature -->
+      <h2 class="h5 mt-5 mb-3">7. Terms & Signature</h2>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms" required>
+        <label class="form-check-label" for="agreeTerms">
+          I agree to pay the remaining balance by October 15, 2025.
+        </label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
+      </div>
+      <div class="mb-4">
+        <label for="signature" class="form-label">e-Signature (Full Name)</label>
+        <input type="text" class="form-control" id="signature" name="signature"
+               placeholder="e.g. John Smith" required>
+        <div class="invalid-feedback">Signature required.</div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary w-100 mb-5">Submit Registration</button>
+    </form>
   </div>
 
-  <!-- ───────────────────────────────────────────────────────────────────
-     10) JAVASCRIPT: ADJUST TERMS & SIGNATURE LAYOUT
-     We check window.innerWidth. If under 480px, stack the checkbox ABOVE the label.
-     Otherwise keep them side-by-side.
-  ─────────────────────────────────────────────────────────────────── -->
+  <!-- Bootstrap Bundle (incl. Popper) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
+  <!-- Flatpickr JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"
+  ></script>
+
   <script>
-    function adjustTermsLayout() {
-      const termsContainer = document.getElementById('termsContainer');
-      if (!termsContainer) return;
+    // Initialize Flatpickr on our date fields
+    flatpickr(".flatpickr", {
+      dateFormat: "Y-m-d",
+      allowInput: true
+    });
 
-      // If viewport is narrower than 480px → stack (column), else row
-      if (window.innerWidth < 480) {
-        termsContainer.style.flexDirection = 'column';
-        termsContainer.querySelector('label').style.marginLeft = '0';
-      } else {
-        termsContainer.style.flexDirection = 'row';
-        termsContainer.querySelector('label').style.marginLeft = '0.5rem';
-      }
-    }
+    // Bootstrap form validation
+    (function() {
+      "use strict";
+      const form = document.getElementById("ziyarahForm");
+      form.addEventListener("submit", function(event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add("was-validated");
+      }, false);
+    })();
 
-    // Run on load, and again whenever the user resizes
-    window.addEventListener('DOMContentLoaded', adjustTermsLayout);
-    window.addEventListener('resize', adjustTermsLayout);
+    // Passport-photo preview
+    document.getElementById("passportPhoto")
+      .addEventListener("change", function(evt) {
+        const [file] = this.files;
+        const preview = document.getElementById("passportPreview");
+        if (file) {
+          preview.src = URL.createObjectURL(file);
+          preview.classList.remove("d-none");
+        } else {
+          preview.src = "";
+          preview.classList.add("d-none");
+        }
+      });
   </script>
 </body>
 </html>
